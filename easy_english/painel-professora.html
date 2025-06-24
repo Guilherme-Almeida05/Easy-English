@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Guilherme De Almeida">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cardsTop.css">
+    <link rel="stylesheet" href="css/agendamento.css">
+    <link rel="stylesheet" href="css/painel-professora.css">
+
+    <title>Painel da Professora - Easy English</title>
+</head>
+
+<body>
+    <header>
+        <!-- Topo da pagina -->
+        <div class="topo">
+            <section class="header">
+                <h1>Easy English - Painel da Professora</h1>
+                <div class="header-actions">
+                    <button id="btn-logout" class="btn-logout">Sair</button>
+                </div>
+            </section>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção de Login -->
+        <section id="login-section" class="login-section">
+            <div class="login-container">
+                <h2>Acesso da Professora</h2>
+                <form id="form-login-professora" class="login-form">
+                    <div class="form-group">
+                        <label for="senha-professora">Senha de Acesso</label>
+                        <input type="password" id="senha-professora" name="senha-professora" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-acessar">Acessar Painel</button>
+                    </div>
+                </form>
+                <div class="login-info">
+                    <p><strong>Instruções:</strong></p>
+                    <ul>
+                        <li>Use a senha fornecida para acessar o painel</li>
+                        <li>No painel você pode visualizar e gerenciar todos os agendamentos</li>
+                        <li>É possível confirmar, cancelar ou remarcar aulas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção do Painel -->
+        <section id="painel-section" class="painel-section" style="display: none;">
+            <div class="painel-container">
+                <!-- Estatísticas -->
+                <div class="estatisticas">
+                    <div class="stat-card">
+                        <h3>Total de Agendamentos</h3>
+                        <span id="total-agendamentos" class="stat-number">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Agendamentos Pendentes</h3>
+                        <span id="agendamentos-pendentes" class="stat-number">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Agendamentos Confirmados</h3>
+                        <span id="agendamentos-confirmados" class="stat-number">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Próximas Aulas (7 dias)</h3>
+                        <span id="proximas-aulas" class="stat-number">0</span>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="filtros">
+                    <h3>Filtrar Agendamentos</h3>
+                    <div class="filtros-container">
+                        <div class="filtro-grupo">
+                            <label for="filtro-status">Status</label>
+                            <select id="filtro-status">
+                                <option value="">Todos</option>
+                                <option value="pendente">Pendente</option>
+                                <option value="confirmado">Confirmado</option>
+                                <option value="cancelado">Cancelado</option>
+                            </select>
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="filtro-data-inicio">Data Início</label>
+                            <input type="date" id="filtro-data-inicio">
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="filtro-data-fim">Data Fim</label>
+                            <input type="date" id="filtro-data-fim">
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="filtro-nivel">Nível</label>
+                            <select id="filtro-nivel">
+                                <option value="">Todos</option>
+                                <option value="Iniciante">Iniciante</option>
+                                <option value="Básico">Básico</option>
+                                <option value="Intermediário">Intermediário</option>
+                                <option value="Avançado">Avançado</option>
+                                <option value="Fluente">Fluente</option>
+                            </select>
+                        </div>
+                        <button id="btn-aplicar-filtros" class="btn-aplicar-filtros">Aplicar Filtros</button>
+                        <button id="btn-limpar-filtros" class="btn-limpar-filtros">Limpar</button>
+                    </div>
+                </div>
+
+                <!-- Lista de Agendamentos -->
+                <div class="agendamentos-professora">
+                    <h3>Agendamentos</h3>
+                    <div id="lista-agendamentos-professora" class="agendamentos-container">
+                        <!-- Os agendamentos serão inseridos aqui via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para Remarcação -->
+    <div id="modal-remarcar" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Remarcar Agendamento</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="form-remarcar">
+                    <div class="form-group">
+                        <label for="nova-data">Nova Data</label>
+                        <input type="date" id="nova-data" name="nova-data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="novo-horario">Novo Horário</label>
+                        <select id="novo-horario" name="novo-horario" required>
+                            <option value="">Selecione um horário</option>
+                            <option value="08:00">08:00</option>
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancelar-modal">Cancelar</button>
+                        <button type="submit" class="btn-confirmar-remarcacao">Confirmar Remarcação</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Easy English. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS com seu User ID
+        (function() {
+            emailjs.init("-XkcIiCZ10Q_dHTy5");
+        })();
+    </script>
+    <script src="js/email-service.js"></script>
+    <script src="js/painel-professora.js"></script>
+</body>
+</html>
+

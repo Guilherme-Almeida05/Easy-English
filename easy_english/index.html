@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Guilherme De Almeida">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cardsTop.css">
+    <link rel="stylesheet" href="css/agendamento.css">
+
+    <title>Easy English</title>
+</head>
+
+<body>
+    <header>
+        <!-- Topo da pagina -->
+        <div class="topo">
+            <section class="header">
+                <h1>Easy English</h1>
+                <div class="header-actions">
+                    <a href="painel-professora.html" class="btn-painel-professora">Painel da Professora</a>
+                </div>
+            </section>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sobre mim</h3>
+                </div>
+                <div class="card-content">
+                    <p>Sou uma professora que busca métodos de aprendizado criativos e funcionais para meus alunos. Estou aqui para mostrar meu melhor. </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Seu aprendizado</h3>
+                </div>
+                <div class="card-content">
+                    <p>Meu objetivo é desenvolver seu inglês para um nível que esteja sempre acima do esperado por você, sempre atendendo suas necessidades e metas.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Metas</h3>
+                </div>
+                <div class="card-content">
+                    <p>Promover um aprendizado memorável e único, estimular o interesse de aprender, praticar e elevar os níveis na língua inglesa. </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="center">
+            <div class="mainInfo">
+                <article class="nav1">
+                    <div class="fNav">
+                        <div class="topnav">
+                            <h2 class="topics1">Ideologia</h2>
+                        </div>
+                        <div class="textWithPhoto">
+                            <p class="text1">Aprender inglês é mais do que apenas estudar uma língua, é uma jornada emocionante que abre portas para novas culturas, oportunidades e formas de pensar. No nosso curso de inglês, você descobrirá um universo de conhecimento e habilidades que o levarão a um novo patamar de comunicação e compreensão.</p>
+                        </div>
+                        <img class="fPhoto" src="img/muie.jpeg" alt="Professora de inglês">
+                    </div>
+                </article>    
+
+                <article class="nav2">
+                    <h2 class="topics1">Conteúdo do curso</h2>
+                    <ul class="main-list">  
+                        <li>Fundamentos do inglês</li>
+                        <li>Comunicação cotidiana</li>
+                        <li>Expansão do vocabulário</li>
+                        <li>Conversação e interação social</li>
+                        <li>Pronúncia e Sotaque</li>
+                        <li>Escrita e Expressão Formal</li>
+                        <li>Inglês para Viagens</li>
+                        <li>Cultura e Gírias</li>
+                    </ul>
+                </article>
+            </div>
+
+            <article>
+                <h2 class="topics">Propósito do projeto</h2>
+                <img src="" alt="">
+                <p class="text">Meu objetivo é otimizar o tempo de aprendizagem e contribuir com resultados acima do que se espera, proporcionando uma boa capacidade de dialogo ao aluno. Outro ponto valorizado é proficiencia na gramatica da lingua inglesa proporcionando melhor entendimento das regras da lingua inglêsa.</p>
+            </article>
+
+            <article>
+                <h2 class="topics">Fundação</h2>
+                <img src="" alt="">
+                <p class="text">O projeto surgiu da iniciativa do companheiro da Miss. <br>
+                                Seu proposito era criar um meio no qual ela pudesse desenvolver suas habilidades e permitir um aprendizado eficaz e criativo para os alunos.</p>
+            </article>
+
+            <!-- Seção de Agendamento -->
+            <article id="agendamento">
+                <h2 class="topics">Agende sua aula</h2>
+                <div class="agendamento-container">
+                    <div class="agendamento-tabs">
+                        <button class="tab-button active" data-tab="novo-agendamento">Novo Agendamento</button>
+                        <button class="tab-button" data-tab="meus-agendamentos">Meus Agendamentos</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="novo-agendamento">
+                        <form id="form-agendamento" class="agendamento-form">
+                            <div class="form-group">
+                                <label for="nome">Nome completo</label>
+                                <input type="text" id="nome" name="nome" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefone">Telefone (WhatsApp)</label>
+                                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="data">Data</label>
+                                    <input type="date" id="data" name="data" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="horario">Horário</label>
+                                    <select id="horario" name="horario" required>
+                                        <option value="">Selecione um horário</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="19:00">19:00</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="nivel">Nível de inglês</label>
+                                <select id="nivel" name="nivel" required>
+                                    <option value="">Selecione seu nível</option>
+                                    <option value="Iniciante">Iniciante</option>
+                                    <option value="Básico">Básico</option>
+                                    <option value="Intermediário">Intermediário</option>
+                                    <option value="Avançado">Avançado</option>
+                                    <option value="Fluente">Fluente (aperfeiçoamento)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="observacoes">Observações (opcional)</label>
+                                <textarea id="observacoes" name="observacoes" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-agendar">Agendar Aula</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-content" id="meus-agendamentos">
+                        <div class="agendamento-login">
+                            <h3>Acesse seus agendamentos</h3>
+                            <form id="form-login" class="login-form">
+                                <div class="form-group">
+                                    <label for="login-email">E-mail</label>
+                                    <input type="email" id="login-email" name="login-email" required>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-acessar">Acessar</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="meus-agendamentos-lista" style="display: none;">
+                            <h3>Suas aulas agendadas</h3>
+                            <div id="lista-agendamentos" class="agendamentos-container">
+                                <!-- Os agendamentos serão inseridos aqui via JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Easy English. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Adicione o script do EmailJS antes dos seus scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS com seu User ID
+        (function() {
+            // SUBSTITUA AQUI: Coloque seu User ID do EmailJS
+            emailjs.init("-XkcIiCZ10Q_dHTy5");
+        })();
+    </script>
+    <script src="js/email-service.js"></script>
+    <script src="js/agendamento.js"></script>
+</body>
+</html>
