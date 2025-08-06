@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Guilherme De Almeida">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cardsTop.css">
+    <link rel="stylesheet" href="css/painel-professora.css">
+
+    <title>Painel Anti-Spam - Easy English</title>
+    
+    <style>
+        .anti-spam-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .anti-spam-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .config-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .config-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .config-item label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .config-item input {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .config-item input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .historico-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .historico-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .historico-table th,
+        .historico-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .historico-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .historico-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .btn-action {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-action:hover {
+            background: #5a6fd8;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .numero-bloqueado {
+            background-color: #ffebee !important;
+            color: #c62828;
+        }
+        
+        .numero-suspeito {
+            background-color: #fff8e1 !important;
+            color: #f57c00;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="topo">
+            <section class="header">
+                <h1>Easy English - Painel Anti-Spam</h1>
+                <div class="header-actions">
+                    <a href="painel-professora.html" class="btn-logout">Voltar ao Painel</a>
+                </div>
+            </section>
+        </div>
+    </header>
+
+    <main>
+        <div class="anti-spam-container">
+            <!-- Header do Painel -->
+            <div class="anti-spam-header">
+                <h2>Sistema de Proteção Anti-Spam SMS</h2>
+                <p>Monitore e configure a proteção contra spam de mensagens SMS</p>
+            </div>
+
+            <!-- Estatísticas Gerais -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">SMS Enviados Hoje</div>
+                    <div class="stat-number" id="sms-hoje">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">SMS Bloqueados</div>
+                    <div class="stat-number" id="sms-bloqueados">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Números Únicos</div>
+                    <div class="stat-number" id="numeros-unicos">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Taxa de Bloqueio</div>
+                    <div class="stat-number" id="taxa-bloqueio">0%</div>
+                </div>
+            </div>
+
+            <!-- Configurações -->
+            <div class="config-section">
+                <h3>Configurações de Proteção</h3>
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label for="max-sms-hora">Máximo SMS por Hora</label>
+                        <input type="number" id="max-sms-hora" min="1" max="50" value="5">
+                    </div>
+                    <div class="config-item">
+                        <label for="max-sms-dia">Máximo SMS por Dia</label>
+                        <input type="number" id="max-sms-dia" min="1" max="100" value="20">
+                    </div>
+                    <div class="config-item">
+                        <label for="intervalo-minimo">Intervalo Mínimo (segundos)</label>
+                        <input type="number" id="intervalo-minimo" min="30" max="300" value="60">
+                    </div>
+                    <div class="config-item">
+                        <label for="numero-professora">Número da Professora</label>
+                        <input type="tel" id="numero-professora" value="+5511999999999">
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn-action btn-success" onclick="salvarConfiguracoes()">Salvar Configurações</button>
+                    <button class="btn-action" onclick="resetarConfiguracoes()">Restaurar Padrão</button>
+                </div>
+            </div>
+
+            <!-- Histórico de SMS -->
+            <div class="historico-section">
+                <h3>Histórico de SMS por Número</h3>
+                <div style="margin-bottom: 20px;">
+                    <button class="btn-action" onclick="atualizarHistorico()">Atualizar Dados</button>
+                    <button class="btn-action btn-danger" onclick="limparHistorico()">Limpar Histórico</button>
+                    <button class="btn-action" onclick="exportarDados()">Exportar Dados</button>
+                </div>
+                
+                <table class="historico-table">
+                    <thead>
+                        <tr>
+                            <th>Número</th>
+                            <th>SMS Hoje</th>
+                            <th>SMS Última Hora</th>
+                            <th>Último SMS</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historico-tbody">
+                        <!-- Dados serão inseridos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Teste do Sistema -->
+            <div class="config-section">
+                <h3>Teste do Sistema</h3>
+                <p>Use esta seção para testar o sistema anti-spam com diferentes cenários.</p>
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label for="numero-teste">Número para Teste</label>
+                        <input type="tel" id="numero-teste" placeholder="+5511999999999">
+                    </div>
+                    <div class="config-item">
+                        <label for="mensagem-teste">Mensagem de Teste</label>
+                        <input type="text" id="mensagem-teste" placeholder="Mensagem de teste do sistema">
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn-action" onclick="testarEnvioSMS()">Testar Envio</button>
+                    <button class="btn-action" onclick="simularSpam()">Simular Spam</button>
+                </div>
+                <div id="resultado-teste"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Easy English. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/sms-service.js"></script>
+    <script>
+        // Variáveis globais
+        let tentativasBloqueadas = 0;
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarConfiguracoes();
+            atualizarEstatisticas();
+            atualizarHistorico();
+            
+            // Atualizar dados a cada 30 segundos
+            setInterval(() => {
+                atualizarEstatisticas();
+                atualizarHistorico();
+            }, 30000);
+        });
+        
+        // Carregar configurações salvas
+        function carregarConfiguracoes() {
+            const config = JSON.parse(localStorage.getItem('anti-spam-config')) || {};
+            
+            document.getElementById('max-sms-hora').value = config.maxSmsHora || 5;
+            document.getElementById('max-sms-dia').value = config.maxSmsDia || 20;
+            document.getElementById('intervalo-minimo').value = config.intervaloMinimo || 60;
+            document.getElementById('numero-professora').value = config.numeroProfessora || '+5511999999999';
+        }
+        
+        // Salvar configurações
+        function salvarConfiguracoes() {
+            const config = {
+                maxSmsHora: parseInt(document.getElementById('max-sms-hora').value),
+                maxSmsDia: parseInt(document.getElementById('max-sms-dia').value),
+                intervaloMinimo: parseInt(document.getElementById('intervalo-minimo').value) * 1000,
+                numeroProfessora: document.getElementById('numero-professora').value
+            };
+            
+            localStorage.setItem('anti-spam-config', JSON.stringify(config));
+            
+            // Atualizar configurações no SMS_CONFIG
+            SMS_CONFIG.MAX_SMS_POR_HORA = config.maxSmsHora;
+            SMS_CONFIG.MAX_SMS_POR_DIA = config.maxSmsDia;
+            SMS_CONFIG.INTERVALO_MINIMO = config.intervaloMinimo;
+            SMS_CONFIG.PROFESSORA_NUMERO = config.numeroProfessora;
+            
+            mostrarAlerta('Configurações salvas com sucesso!', 'success');
+        }
+        
+        // Restaurar configurações padrão
+        function resetarConfiguracoes() {
+            if (confirm('Tem certeza que deseja restaurar as configurações padrão?')) {
+                localStorage.removeItem('anti-spam-config');
+                
+                document.getElementById('max-sms-hora').value = 5;
+                document.getElementById('max-sms-dia').value = 20;
+                document.getElementById('intervalo-minimo').value = 60;
+                document.getElementById('numero-professora').value = '+5511999999999';
+                
+                mostrarAlerta('Configurações restauradas para o padrão!', 'warning');
+            }
+        }
+        
+        // Atualizar estatísticas
+        function atualizarEstatisticas() {
+            const historico = JSON.parse(localStorage.getItem('sms-historico')) || {};
+            const agora = Date.now();
+            const umDiaAtras = agora - (24 * 60 * 60 * 1000);
+            
+            let smsHoje = 0;
+            let numerosUnicos = 0;
+            
+            for (const numero in historico) {
+                const smsNumero = historico[numero].filter(timestamp => timestamp > umDiaAtras);
+                smsHoje += smsNumero.length;
+                if (smsNumero.length > 0) {
+                    numerosUnicos++;
+                }
+            }
+            
+            const taxaBloqueio = smsHoje > 0 ? ((tentativasBloqueadas / (smsHoje + tentativasBloqueadas)) * 100).toFixed(1) : 0;
+            
+            document.getElementById('sms-hoje').textContent = smsHoje;
+            document.getElementById('sms-bloqueados').textContent = tentativasBloqueadas;
+            document.getElementById('numeros-unicos').textContent = numerosUnicos;
+            document.getElementById('taxa-bloqueio').textContent = taxaBloqueio + '%';
+        }
+        
+        // Atualizar histórico
+        function atualizarHistorico() {
+            const historico = JSON.parse(localStorage.getItem('sms-historico')) || {};
+            const tbody = document.getElementById('historico-tbody');
+            tbody.innerHTML = '';
+            
+            const agora = Date.now();
+            const umaHoraAtras = agora - (60 * 60 * 1000);
+            const umDiaAtras = agora - (24 * 60 * 60 * 1000);
+            
+            for (const numero in historico) {
+                const smsHoje = historico[numero].filter(timestamp => timestamp > umDiaAtras).length;
+                const smsUltimaHora = historico[numero].filter(timestamp => timestamp > umaHoraAtras).length;
+                const ultimoSMS = historico[numero].length > 0 ? new Date(Math.max(...historico[numero])).toLocaleString('pt-BR') : 'Nunca';
+                
+                let status = 'Normal';
+                let statusClass = '';
+                
+                if (smsHoje >= SMS_CONFIG.MAX_SMS_POR_DIA) {
+                    status = 'Bloqueado (Limite Diário)';
+                    statusClass = 'numero-bloqueado';
+                } else if (smsUltimaHora >= SMS_CONFIG.MAX_SMS_POR_HORA) {
+                    status = 'Bloqueado (Limite Horário)';
+                    statusClass = 'numero-bloqueado';
+                } else if (smsHoje > SMS_CONFIG.MAX_SMS_POR_DIA * 0.7) {
+                    status = 'Suspeito';
+                    statusClass = 'numero-suspeito';
+                }
+                
+                const row = document.createElement('tr');
+                row.className = statusClass;
+                row.innerHTML = `
+                    <td>${numero}</td>
+                    <td>${smsHoje}</td>
+                    <td>${smsUltimaHora}</td>
+                    <td>${ultimoSMS}</td>
+                    <td>${status}</td>
+                    <td>
+                        <button class="btn-action" style="padding: 5px 10px; font-size: 12px;" onclick="resetarNumero('${numero}')">Resetar</button>
+                        <button class="btn-action btn-danger" style="padding: 5px 10px; font-size: 12px;" onclick="bloquearNumero('${numero}')">Bloquear</button>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            }
+            
+            if (Object.keys(historico).length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #666;">Nenhum histórico de SMS encontrado</td></tr>';
+            }
+        }
+        
+        // Resetar histórico de um número
+        function resetarNumero(numero) {
+            if (confirm(`Tem certeza que deseja resetar o histórico do número ${numero}?`)) {
+                let historico = JSON.parse(localStorage.getItem('sms-historico')) || {};
+                delete historico[numero];
+                localStorage.setItem('sms-historico', JSON.stringify(historico));
+                
+                atualizarHistorico();
+                atualizarEstatisticas();
+                mostrarAlerta(`Histórico do número ${numero} foi resetado!`, 'success');
+            }
+        }
+        
+        // Bloquear número (adicionar ao histórico com muitos SMS)
+        function bloquearNumero(numero) {
+            if (confirm(`Tem certeza que deseja bloquear o número ${numero}?`)) {
+                let historico = JSON.parse(localStorage.getItem('sms-historico')) || {};
+                
+                // Adicionar muitos timestamps para simular bloqueio
+                const agora = Date.now();
+                historico[numero] = [];
+                for (let i = 0; i < SMS_CONFIG.MAX_SMS_POR_DIA; i++) {
+                    historico[numero].push(agora - (i * 1000));
+                }
+                
+                localStorage.setItem('sms-historico', JSON.stringify(historico));
+                
+                atualizarHistorico();
+                atualizarEstatisticas();
+                mostrarAlerta(`Número ${numero} foi bloqueado!`, 'warning');
+            }
+        }
+        
+        // Limpar todo o histórico
+        function limparHistorico() {
+            if (confirm('Tem certeza que deseja limpar todo o histórico de SMS? Esta ação não pode ser desfeita.')) {
+                localStorage.removeItem('sms-historico');
+                tentativasBloqueadas = 0;
+                
+                atualizarHistorico();
+                atualizarEstatisticas();
+                mostrarAlerta('Histórico limpo com sucesso!', 'success');
+            }
+        }
+        
+        // Exportar dados
+        function exportarDados() {
+            const historico = JSON.parse(localStorage.getItem('sms-historico')) || {};
+            const config = JSON.parse(localStorage.getItem('anti-spam-config')) || {};
+            
+            const dados = {
+                historico: historico,
+                configuracoes: config,
+                estatisticas: {
+                    smsHoje: document.getElementById('sms-hoje').textContent,
+                    smsBloqueados: document.getElementById('sms-bloqueados').textContent,
+                    numerosUnicos: document.getElementById('numeros-unicos').textContent,
+                    taxaBloqueio: document.getElementById('taxa-bloqueio').textContent
+                },
+                dataExportacao: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `anti-spam-dados-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            mostrarAlerta('Dados exportados com sucesso!', 'success');
+        }
+        
+        // Testar envio de SMS
+        function testarEnvioSMS() {
+            const numero = document.getElementById('numero-teste').value;
+            const mensagem = document.getElementById('mensagem-teste').value;
+            
+            if (!numero || !mensagem) {
+                mostrarAlerta('Por favor, preencha o número e a mensagem para teste.', 'warning');
+                return;
+            }
+            
+            enviarSMS(numero, mensagem, 'teste')
+                .then(result => {
+                    mostrarResultadoTeste(`✅ SMS enviado com sucesso para ${numero}`, 'success');
+                    atualizarEstatisticas();
+                    atualizarHistorico();
+                })
+                .catch(error => {
+                    mostrarResultadoTeste(`❌ Erro ao enviar SMS: ${error.message}`, 'danger');
+                    if (error.message.includes('Anti-spam')) {
+                        tentativasBloqueadas++;
+                        atualizarEstatisticas();
+                    }
+                });
+        }
+        
+        // Simular spam
+        function simularSpam() {
+            const numero = document.getElementById('numero-teste').value || '+5511999999999';
+            
+            if (confirm('Isso irá simular múltiplos envios de SMS para testar o sistema anti-spam. Continuar?')) {
+                let tentativas = 0;
+                let bloqueados = 0;
+                
+                const intervalo = setInterval(() => {
+                    tentativas++;
+                    
+                    enviarSMS(numero, `Teste de spam #${tentativas}`, 'teste')
+                        .then(result => {
+                            console.log(`SMS ${tentativas} enviado`);
+                        })
+                        .catch(error => {
+                            bloqueados++;
+                            console.log(`SMS ${tentativas} bloqueado: ${error.message}`);
+                            tentativasBloqueadas++;
+                        });
+                    
+                    if (tentativas >= 10) {
+                        clearInterval(intervalo);
+                        mostrarResultadoTeste(`🧪 Simulação concluída: ${tentativas} tentativas, ${bloqueados} bloqueadas`, 'warning');
+                        atualizarEstatisticas();
+                        atualizarHistorico();
+                    }
+                }, 500);
+            }
+        }
+        
+        // Mostrar resultado do teste
+        function mostrarResultadoTeste(mensagem, tipo) {
+            const div = document.getElementById('resultado-teste');
+            div.innerHTML = `<div class="alert alert-${tipo}">${mensagem}</div>`;
+            
+            setTimeout(() => {
+                div.innerHTML = '';
+            }, 5000);
+        }
+        
+        // Mostrar alerta
+        function mostrarAlerta(mensagem, tipo) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${tipo}`;
+            alertDiv.textContent = mensagem;
+            
+            const container = document.querySelector('.anti-spam-container');
+            container.insertBefore(alertDiv, container.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
+

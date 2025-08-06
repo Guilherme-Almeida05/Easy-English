@@ -1,0 +1,108 @@
+/* 
+   Easy English - Estilo para Cards do Topo
+   Complemento ao estilo principal com foco nos cards
+*/
+
+/* Estilos específicos para os cards do topo */
+.cards {
+    position: relative;
+    z-index: 10;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(142, 202, 230, 0.2);
+}
+
+.card-header {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 180, 162, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.card:hover .card-header::before {
+    opacity: 1;
+    transform: scale(6);
+    opacity: 0.2;
+}
+
+.card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-content p {
+    transition: color 0.3s ease;
+}
+
+.card:hover .card-content p {
+    color: #219ebc;
+}
+
+/* Efeito de destaque ao passar o mouse */
+.card:nth-child(1):hover {
+    border-bottom: 3px solid #ffb4a2;
+}
+
+.card:nth-child(2):hover {
+    border-bottom: 3px solid #ffb4a2;
+}
+
+.card:nth-child(3):hover {
+    border-bottom: 3px solid #ffb4a2;
+}
+
+/* Animação suave ao carregar a página */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card:nth-child(1) {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.card:nth-child(2) {
+    animation: fadeInUp 0.6s 0.2s ease forwards;
+    animation-fill-mode: both;
+}
+
+.card:nth-child(3) {
+    animation: fadeInUp 0.6s 0.4s ease forwards;
+    animation-fill-mode: both;
+}
+
+/* Responsividade para os cards */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .card:nth-child(1),
+    .card:nth-child(2),
+    .card:nth-child(3) {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+}
