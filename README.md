@@ -65,7 +65,7 @@ Atualmente, o sistema utiliza o localStorage do navegador para armazenar os agen
 
 Para uma solução mais robusta, seria recomendável implementar um backend com banco de dados.
 
-## Próximos Passos Recomendados
+## Próximos Passos 
 
 1. Implementar a integração real com um serviço de email
 2. Desenvolver um backend para armazenamento persistente dos agendamentos
