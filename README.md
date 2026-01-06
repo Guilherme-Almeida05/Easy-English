@@ -1,5 +1,6 @@
 # Easy-English
-A project based on the interest of learning more and contributing to the work of someone special.
+Um projeto elaborado para facilitar o trabalho de quem trabalha com aulas online, o fator morivacional para eu criar esse projeto foi uma pessoa muito especial para mim.
+
 
 
 # Easy English - Sistema de Agendamento
@@ -31,7 +32,7 @@ easy_english/
 
 ## Configuração do Envio de Email
 
-Para que o sistema envie emails reais, é necessário integrar com um serviço de email. O arquivo `js/email-service.js` contém o código preparado para essa integração, com comentários explicativos.
+Para que o sistema envie emails reais, é necessário integrar com um serviço de email. O arquivo `js/email-service.js` contém o código preparado para essa integração, com comentários guiando o usuário.=
 
 ### Opções de Integração:
 
@@ -40,8 +41,6 @@ Para que o sistema envie emails reais, é necessário integrar com um serviço d
    - Configure um serviço e templates
    - Adicione o SDK ao projeto
    - Descomente e configure o código no arquivo `email-service.js`
-
-2. **Outras opções**: SendGrid, Mailgun, AWS SES (requerem backend)
 
 ## Personalização
 
@@ -58,12 +57,12 @@ Para que o sistema envie emails reais, é necessário integrar com um serviço d
 
 ## Armazenamento de Dados
 
-Atualmente, o sistema utiliza o localStorage do navegador para armazenar os agendamentos. Isso significa que:
+Atualmente, o sistema utiliza o localStorage do navegador para armazenar os agendamentos.
 - Os dados são armazenados apenas no navegador do usuário
 - Os agendamentos não são compartilhados entre dispositivos
 - Os dados persistem mesmo após fechar o navegador, mas podem ser perdidos se o usuário limpar os dados de navegação
 
-Para uma solução mais robusta, seria recomendável implementar um backend com banco de dados.
+Obs: Encrementar o backend para ter um resultado mais robusto.
 
 ## Próximos Passos 
 
